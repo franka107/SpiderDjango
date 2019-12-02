@@ -7,3 +7,4 @@ from .models import CurrentMovement
 
 class CurrentMovementViewSet(viewsets.ModelViewSet):
     queryset = CurrentMovement.objects.all()
+    serializer_class = CurrentMovementSerializer
