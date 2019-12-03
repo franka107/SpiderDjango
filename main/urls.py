@@ -4,6 +4,10 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'currentmovements', views.CurrentMovementViewSet)
+router.register(r'robots', views.RobotViewSet)
+router.register(r'sensors', views.SensorViewSet)
+
+
 
 urlpatterns = [
     path('' , include(router.urls)),

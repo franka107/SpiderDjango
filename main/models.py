@@ -6,7 +6,8 @@ MOVEMENTS_CHOICES = [
     ( 'Right', 'Derecha' ),
     ( 'Left' , 'Izquierda'),
     ( 'Front' , 'Avanzar'),
-    ( 'Back' , 'Retroceder')
+    ( 'Back' , 'Retroceder'),
+    ( 'Stop' , 'Parar')
 ]
 
 
@@ -43,9 +44,9 @@ class Value(models.Model):
 
     def __str__(self):
         return  str(self.value)
+        
 class CurrentMovement(models.Model):
-
-    robot = models.OneToOneField( Robot, on_delete=models.CASCADE)
+    robot = models.OneToOneField( Robot, primary_key = True,  on_delete=models.CASCADE)
     direction = models.CharField(max_length = 30, choices = MOVEMENTS_CHOICES, default= 'Front')
 
 class PastMovement(models.Model):
