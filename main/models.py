@@ -42,7 +42,7 @@ class Value(models.Model):
     value = models.IntegerField()
 
     def __str__(self):
-        return  self.read
+        return  str(self.value)
 class CurrentMovement(models.Model):
 
     robot = models.OneToOneField( Robot, on_delete=models.CASCADE)
