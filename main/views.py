@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-# from .serializers import CurrentMovementSerializer
+
 from .serializers import *
 from .models import *
 from .models import Value
 import pudb;
+
 
 
 # Create your views here.
@@ -16,6 +18,7 @@ import pudb;
 class CurrentMovementViewSet(viewsets.ModelViewSet):
     queryset = CurrentMovement.objects.all()
     serializer_class = CurrentMovementSerializer
+
 
 
 class HelloView(APIView):
@@ -45,3 +48,16 @@ class RecordsViewSet(APIView):
             my_dictionary[id_read] = dict2  # puebla el diccionario a responder
 
         return Response(my_dictionary)
+
+class PastMovementViewSet(viewsets.ModelViewSet):
+    queryset = PastMovement.objects.all()
+    serializer_class = PastMovementsSerializer
+
+class RobotViewSet(viewsets.ModelViewSet):
+    queryset = Robot.objects.all()
+    serializer_class = RobotSerializer 
+
+class SensorViewSet(viewsets.ModelViewSet):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer
+

@@ -2,4 +2,11 @@
 __pycache__
 /static
 db.sqlite3
+<<<<<<< HEAD
 .vscode/
+=======
+.vscode/
+/frontend/*
+!/frontend/dist
+
+>>>>>>> 70969bc28b00cbb6332d7a46ee9318ccde58ff3a
