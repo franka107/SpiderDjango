@@ -1,9 +1,16 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-from .serializers import CurrentMovementSerializer, RobotSerializer, SensorSerializer, PastMovementsSerializer
+from rest_framework import viewsets, permissions, serializers
+from .serializers import *
 from .models import CurrentMovement, PastMovement, Robot, Sensor
+from django.contrib.auth.models import User
+from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
+
 
 # Create your views here.
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class CurrentMovementViewSet(viewsets.ModelViewSet):
     queryset = CurrentMovement.objects.all()
