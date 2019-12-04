@@ -3,6 +3,6 @@ __pycache__
 /static
 db.sqlite3
 .vscode/
-frontent/*
-!/frontend/dist/*
+/frontend/*
+!frontend/dist/
 
