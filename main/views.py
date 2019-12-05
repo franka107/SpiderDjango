@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions, serializers
+from rest_framework import viewsets, permissions, serializers, generics
 from .serializers import *
 from .models import CurrentMovement, PastMovement, Robot, Sensor
 from django.contrib.auth.models import User
@@ -27,3 +27,7 @@ class RobotViewSet(viewsets.ModelViewSet):
 class SensorViewSet(viewsets.ModelViewSet):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
+
+class RegisterView(generics.CreateAPIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = UserSerializer
