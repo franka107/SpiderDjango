@@ -19,30 +19,16 @@ class CurrentMovementSerializer(serializers.ModelSerializer):
         pastmovement = PastMovement(
             robot= validated_data['robot'],
             direction = validated_data['direction'],
-            runtime_date = datetime.datetime.now()
         )
         pastmovement.save()
-
         return CurrentMovement.objects.create(**validated_data)
 
     def update( self, instance, validated_data):
-
-        if(PastMovement.objects.count() > 0):
-            lastpastmovement = PastMovement.objects.all().last()
-            lastruntime = lastpastmovement.runtime_date.replace(tzinfo=None)
-            currentruntime =  datetime.datetime.now()
-            duration = currentruntime - lastruntime
-            lastpastmovement.duration = int(duration.total_seconds())
-            lastpastmovement.save()
-
         pastmovement = PastMovement(
             robot= validated_data['robot'],
             direction = validated_data['direction'],
-            runtime_date = datetime.datetime.now()
         )
         pastmovement.save()
-
-
         instance.direction = validated_data.get('direction' , instance.direction)
         instance.save()
         return instance

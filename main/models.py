@@ -52,5 +52,5 @@ class CurrentMovement(models.Model):
 class PastMovement(models.Model):
     robot = models.ForeignKey( Robot, on_delete=models.CASCADE)
     direction = models.CharField(max_length = 30, choices = MOVEMENTS_CHOICES)
-    runtime_date = models.DateTimeField()
+    runtime_date = models.DateTimeField(auto_now_add = True)
     duration = models.IntegerField(null = True)
