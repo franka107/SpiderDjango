@@ -13,7 +13,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 class CurrentMovementViewSet(viewsets.ModelViewSet):
-    permissions_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny]
     queryset = CurrentMovement.objects.all()
     serializer_class = CurrentMovementSerializer
 
