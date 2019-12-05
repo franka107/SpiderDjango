@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions, serializers, generics
 from .serializers import *
+from .permissions import IsOwnerOrReadOnly
 from .models import CurrentMovement, PastMovement, Robot, Sensor
 from django.contrib.auth.models import User
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
@@ -8,12 +9,12 @@ from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, Token
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 class CurrentMovementViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = CurrentMovement.objects.all()
     serializer_class = CurrentMovementSerializer
 
@@ -32,3 +33,4 @@ class SensorViewSet(viewsets.ModelViewSet):
 class RegisterView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = UserSerializer
+
