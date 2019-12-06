@@ -51,11 +51,7 @@ class SensorSerializer(serializers.ModelSerializer):
         model = Sensor
         fields = '__all__'
 
-
 class RobotSerializer(serializers.ModelSerializer):
-    #sensors = SensorSerializer(many=True)
-    #sensors= serializers.StringRelatedField(many=True)
-     
     class Meta:
         model = Robot
         fields = '__all__'
