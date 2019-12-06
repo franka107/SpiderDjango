@@ -30,13 +30,19 @@ class Robot(models.Model):
     def __str__(self):
         return self.name
 
-class Read(models.Model):
+class SensorInstance(models.Model):
     robot = models.ForeignKey(Robot, on_delete=models.CASCADE)
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
-    date = models.DateTimeField()
 
     def __str__(self):
-       return str(self.pk) + ' - ' +self.sensor.name + ' - ' + self.robot.name
+        return self.sensor.name
+
+class Read(models.Model):
+    sensorinstance = models.ForeignKey(SensorInstance, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+       return str(self.pk) 
 
 class Value(models.Model):
     read = models.ForeignKey(Read,  on_delete=models.CASCADE)
