@@ -1,9 +1,14 @@
 from rest_framework import serializers, generics, permissions
-from .models import CurrentMovement, PastMovement, Robot, Sensor
+from .models import CurrentMovement, PastMovement, Robot, Sensor, Read
 from django.contrib.auth.models import User, Group
 from django.contrib import admin
 import datetime
 admin.autodiscover()
+
+class ReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Read
+        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only = True)

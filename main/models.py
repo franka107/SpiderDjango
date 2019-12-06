@@ -42,7 +42,7 @@ class Read(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-       return str(self.pk) 
+       return str(self.pk) + ' - ' +self.sensorinstance.sensor.name 
 
 class Value(models.Model):
     read = models.ForeignKey(Read,  on_delete=models.CASCADE)
