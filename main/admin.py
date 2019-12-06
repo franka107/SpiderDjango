@@ -4,7 +4,7 @@ from . import models
 
 
 class ReadAdmin(admin.ModelAdmin):
-    list_display = ('sensorinstance', 'date')
+    list_display = ('sensorinstance', 'date', 'field1', 'field2', 'field3')
 
 class ValueAdmin(admin.ModelAdmin):
     list_display = ('read' , 'value')

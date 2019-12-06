@@ -41,9 +41,9 @@ class SensorInstance(models.Model):
 class Read(models.Model):
     sensorinstance = models.ForeignKey(SensorInstance, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(auto_now_add=True)
-    field1 = models.CharField(max_length= 100, null= True)
-    field2 = models.CharField(max_length= 100, null= True)
-    field3 = models.CharField(max_length= 100, null= True)
+    field1 = models.CharField(max_length= 100, null= True, blank= True)
+    field2 = models.CharField(max_length= 100, null= True, blank= True)
+    field3 = models.CharField(max_length= 100, null= True, blank= True)
 
 
     def __str__(self):
