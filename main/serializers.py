@@ -5,6 +5,8 @@ from django.contrib import admin
 import datetime
 admin.autodiscover()
 
+
+
 class ReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Read
@@ -57,6 +59,8 @@ class RobotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Robot
         fields = '__all__'
+
+
 
         
  

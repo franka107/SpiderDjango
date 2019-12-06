@@ -21,7 +21,7 @@ class SensorInstanceAdmin(admin.ModelAdmin):
 admin.site.register(models.Robot)
 admin.site.register(models.Sensor)
 admin.site.register(models.Read, ReadAdmin)
-admin.site.register(models.Value, ValueAdmin)
+
 admin.site.register(models.CurrentMovement, CurrentMovementAdmin)
 admin.site.register(models.PastMovement, PastMovementAdmin)
 admin.site.register(models.SensorInstance, SensorInstanceAdmin)

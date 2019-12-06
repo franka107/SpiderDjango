@@ -14,8 +14,10 @@ router.register(r'users', views.UserViewSet)
 router.register(r'reads', views.ReadViewSet)
 
 
+
 urlpatterns = [
     path('' , include(router.urls)),
-    path('register/' , views.RegisterView.as_view())
+    path('register/' , views.RegisterView.as_view()),
+    path('sensorinstances/<int:pk>/reads/', views.ReadList.as_view())
 ]
 
