@@ -16,7 +16,7 @@ class PastMovementAdmin(admin.ModelAdmin):
     list_display = ('robot' , 'direction' , 'runtime_date' , 'duration')
 
 class SensorInstanceAdmin(admin.ModelAdmin):
-    list_display = ('robot' , 'sensor')
+    list_display = ('pk','robot' , 'sensor')
 
 admin.site.register(models.Robot)
 admin.site.register(models.Sensor)

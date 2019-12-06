@@ -5,4 +5,6 @@ db.sqlite3
 .vscode/
 /frontend/*
 !frontend/dist/
+/media/images/*
+!media/images/sensors/default.png
 

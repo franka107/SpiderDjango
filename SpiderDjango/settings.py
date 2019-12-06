@@ -136,6 +136,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #Vue Js configuration
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/dist/static/')
+    
 ]
 
 #Cors

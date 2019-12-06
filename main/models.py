@@ -15,6 +15,7 @@ class Sensor(models.Model):
     name = models.CharField(max_length=100)
     model = models.CharField(max_length=30)
     description = models.TextField()
+    image = models.ImageField(upload_to = 'images/sensors', null=True,  default = 'images/sensors/default.png')
 
     def __str__(self):
         return self.name
@@ -23,9 +24,8 @@ class Robot(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField()
-    date_joined = models.DateField()
+    date_joined = models.DateField(auto_now_add = True)
     robot_type = models.CharField(max_length = 50)
-    sensors = models.ManyToManyField(Sensor)
 
     def __str__(self):
         return self.name
@@ -35,7 +35,7 @@ class SensorInstance(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.sensor.name
+        return str(self.pk) + ' - ' + self.sensor.name + ' - ' + self.robot.name
 
 class Read(models.Model):
     sensorinstance = models.ForeignKey(SensorInstance, on_delete=models.CASCADE, null=True)
