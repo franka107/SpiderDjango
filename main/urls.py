@@ -12,6 +12,7 @@ router.register(r'robots', views.RobotViewSet)
 router.register(r'sensors', views.SensorViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'reads', views.ReadViewSet)
+router.register(r'channels', views.ChannelViewSet)
 
 
 

@@ -16,8 +16,14 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+class ChannelViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny]
+    queryset = Channel.objects.all()
+    serializer_class = ChannelSerializer
+
 class CurrentMovementViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsOwnerOrReadOnly]
+    #permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.AllowAny]
     queryset = CurrentMovement.objects.all()
     serializer_class = CurrentMovementSerializer
 

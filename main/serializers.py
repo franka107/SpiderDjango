@@ -1,5 +1,5 @@
 from rest_framework import serializers, generics, permissions
-from .models import CurrentMovement, PastMovement, Robot, Sensor, Read
+from .models import CurrentMovement, PastMovement, Robot, Sensor, Read, Channel
 from django.contrib.auth.models import User, Group
 from django.contrib import admin
 import datetime
@@ -55,6 +55,12 @@ class RobotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Robot
         fields = '__all__'
+
+class ChannelSerializer(serializers .ModelSerializer):
+    class Meta:
+        model = Channel
+        fields = '__all__'
+
 
 
 

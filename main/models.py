@@ -59,3 +59,8 @@ class PastMovement(models.Model):
     direction = models.CharField(max_length = 30, choices = MOVEMENTS_CHOICES)
     runtime_date = models.DateTimeField(auto_now_add = True)
     duration = models.IntegerField(null = True)
+
+class Channel(models.Model):
+    value = models.CharField(max_length= 100, null= True, blank= True)
+
+
