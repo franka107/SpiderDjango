@@ -15,7 +15,11 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
 
     #permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
+
+    #permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
     queryset = User.objects.all()
+    
+
     serializer_class = UserSerializer
 
     
@@ -67,11 +71,23 @@ class ReadList(views.APIView):
         serializer = ReadSerializer(reads, many=True)
         return Response(serializer.data)
 
-""" class DataList(views.APIView):
+class DataList(views.APIView):
     permission_classes = [permissions.AllowAny]
-    def get_object(self, pk):
-        try:
- """
+    def get(self, request, format= None):
+        print(request.user)
+        usernames = [user.username for user in User.objects.all()]
+        user = User.objects.get(username= request.user)
+        robots = [{ 'name': robot.name,'description': robot.description, 'date_joined': robot.date_joined, 'robot_type': robot.robot_type, 'image' : robot.image.url } for robot in Robot.objects.filter(user = user)]
+        data = {
+            'username' : user.username,
+            'email' : user.email,
+            'first_name' : user.first_name,
+            'last_name': user.last_name,
+            'robots' : robots
+
+        }
+        return Response(data)
+
     
 
 

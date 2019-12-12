@@ -19,6 +19,7 @@ router.register(r'channels', views.ChannelViewSet)
 urlpatterns = [
     path('' , include(router.urls)),
     path('register/' , views.RegisterView.as_view()),
-    path('sensorinstances/<int:pk>/reads/', views.ReadList.as_view())
+    path('sensorinstances/<int:pk>/reads/', views.ReadList.as_view()),
+    path('mydata/', views.DataList.as_view())
 ]
 
