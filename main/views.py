@@ -12,26 +12,18 @@ from rest_framework import status
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
-
-    #permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
-
-    #permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
+    permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
     queryset = User.objects.all()
-    
-
     serializer_class = UserSerializer
 
     
-
 class ChannelViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
 
 class CurrentMovementViewSet(viewsets.ModelViewSet):
-    #permission_classes = [IsOwnerOrReadOnly]
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = CurrentMovement.objects.all()
     serializer_class = CurrentMovementSerializer
 
@@ -72,12 +64,12 @@ class ReadList(views.APIView):
         return Response(serializer.data)
 
 class DataList(views.APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, format= None):
         print(request.user)
         usernames = [user.username for user in User.objects.all()]
         user = User.objects.get(username= request.user)
-        robots = [{ 'name': robot.name,'description': robot.description, 'date_joined': robot.date_joined, 'robot_type': robot.robot_type, 'image' : robot.image.url } for robot in Robot.objects.filter(user = user)]
+        robots = [{ 'id': robot.pk, 'name': robot.name,'description': robot.description, 'date_joined': robot.date_joined, 'robot_type': robot.robot_type, 'image' : robot.image.url } for robot in Robot.objects.filter(user = user)]
         data = {
             'username' : user.username,
             'email' : user.email,
