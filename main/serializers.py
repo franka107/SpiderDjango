@@ -6,17 +6,34 @@ import datetime
 admin.autodiscover()
 
 
-
 class ReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Read
         fields = '__all__'
 
+class RobotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Robot
+        fields = '__all__'
+
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only = True)
+    robots = serializers.SerializerMethodField('get_robots')
+    def get_robots(self, user):
+        objects = Robot.objects.filter( user= user)
+        array = []
+        for i in objects:
+            array.append({
+                'id': i.pk,
+                'name': i.name,
+                'description': i.description,
+                'image' : i.image.url
+                })
+        return array
+
     class Meta:
         model = User
-        fields = ('username' , 'email' , 'first_name' , 'last_name' , 'password')
+        fields = ('username' , 'email' , 'first_name' , 'last_name' , 'password', 'robots')
 
     def create(self, validated_data):
         user = User(
@@ -63,16 +80,17 @@ class SensorSerializer(serializers.ModelSerializer):
         model = Sensor
         fields = '__all__'
 
-class RobotSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Robot
-        fields = '__all__'
+
 
 class ChannelSerializer(serializers .ModelSerializer):
     class Meta:
         model = Channel
         fields = '__all__'
 
+""" class DataSerializer(serializers.Serializer):
+    user = UserSerializer()
+    robots = RobotSerializer(many = True)
+ """
 
 
 

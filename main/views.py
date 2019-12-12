@@ -12,9 +12,13 @@ from rest_framework import status
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
+    permission_classes = [permissions.AllowAny]
+
+    #permission_classes = [permissions.IsAdminUser, TokenHasReadWriteScope]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    
 
 class ChannelViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
@@ -62,6 +66,13 @@ class ReadList(views.APIView):
         reads = self.get_object(pk)
         serializer = ReadSerializer(reads, many=True)
         return Response(serializer.data)
+
+""" class DataList(views.APIView):
+    permission_classes = [permissions.AllowAny]
+    def get_object(self, pk):
+        try:
+ """
+    
 
 
 
