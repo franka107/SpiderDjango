@@ -16,9 +16,8 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    
 class ChannelViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
 
@@ -42,7 +41,7 @@ class SensorViewSet(viewsets.ModelViewSet):
     serializer_class = SensorSerializer
 
 class ReadViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Read.objects.all()
     serializer_class = ReadSerializer
 
